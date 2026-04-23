@@ -1,0 +1,15 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - echo "Deploying to S3"
+
+artifacts:
+  files:
+    - '**/*'
+
+post_build:
+  commands:
+    - echo "Uploading files to S3"
+    - aws s3 sync . s3://bucket-palm --delete
